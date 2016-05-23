@@ -6,7 +6,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="connection.url">jdbc:mysql://localhost:3306/spring-library</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/springlibrary</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.connection.datasource">jdbc/Library</property>
