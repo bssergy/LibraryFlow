@@ -8,10 +8,10 @@ public class Book {
     private byte[] content;
     private int pageCount;
     private String isbn;
-    private long genreId;
-    private long authorId;
+    private Genre genre;
+    private Author author;
     private int publishYear;
-    private long publisherId;
+    private Publisher publisher;
     private byte[] image;
     private String descr;
     private Integer rating;
@@ -57,20 +57,20 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public long getGenreId() {
-        return genreId;
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setGenreId(long genreId) {
-        this.genreId = genreId;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
-    public long getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(long authorId) {
-        this.authorId = authorId;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public int getPublishYear() {
@@ -81,12 +81,12 @@ public class Book {
         this.publishYear = publishYear;
     }
 
-    public long getPublisherId() {
-        return publisherId;
+    public Publisher getPublisher() {
+        return publisher;
     }
 
-    public void setPublisherId(long publisherId) {
-        this.publisherId = publisherId;
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
     public byte[] getImage() {
@@ -130,10 +130,10 @@ public class Book {
 
         if (id != book.id) return false;
         if (pageCount != book.pageCount) return false;
-        if (genreId != book.genreId) return false;
-        if (authorId != book.authorId) return false;
+        if (genre.equals(book.genre)) return false;
+        if (author.equals(book.author)) return false;
         if (publishYear != book.publishYear) return false;
-        if (publisherId != book.publisherId) return false;
+        if (publisher.equals(book.publisher)) return false;
         if (name != null ? !name.equals(book.name) : book.name != null) return false;
         if (!Arrays.equals(content, book.content)) return false;
         if (isbn != null ? !isbn.equals(book.isbn) : book.isbn != null) return false;
@@ -152,10 +152,10 @@ public class Book {
         result = 31 * result + Arrays.hashCode(content);
         result = 31 * result + pageCount;
         result = 31 * result + (isbn != null ? isbn.hashCode() : 0);
-        result = 31 * result + (int) (genreId ^ (genreId >>> 32));
-        result = 31 * result + (int) (authorId ^ (authorId >>> 32));
+        result = 31 * result + genre.hashCode();
+        result = 31 * result + author.hashCode();
         result = 31 * result + publishYear;
-        result = 31 * result + (int) (publisherId ^ (publisherId >>> 32));
+        result = 31 * result + publisher.hashCode();
         result = 31 * result + Arrays.hashCode(image);
         result = 31 * result + (descr != null ? descr.hashCode() : 0);
         result = 31 * result + (rating != null ? rating.hashCode() : 0);
