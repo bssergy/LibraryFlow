@@ -10,17 +10,22 @@ import java.util.List;
 @Component
 public class LibraryFacade {
 
+    @Autowired
     private BookDAO bookDAO;
+
+    @Autowired
+    private SearchCriteria searchCriteria;
 
     private List<Book> books;
 
-    @Autowired
-    public void setBookDAO(BookDAO bookDAO) {
-        this.bookDAO = bookDAO;
-        books = bookDAO.getBooks();
+    public List<Book> getBooks() {
+        if (books == null) {
+            books = bookDAO.getBooks();
+        }
+        return books;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public void searchBooksByLetter() {
+        books = bookDAO.getBooks(searchCriteria.getLetter());
     }
 }

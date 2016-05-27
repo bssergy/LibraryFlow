@@ -67,14 +67,14 @@ public class BookDAOImpl implements BookDAO {
     @Transactional
     @Override
     public List<Book> getBooks(Genre genre) {
-        List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("genre.name", genre.getName(), MatchMode.ANYWHERE)));
+        List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("genre.id", genre.getId())));
         return books;
     }
 
     @Transactional
     @Override
     public List<Book> getBooks(Character letter) {
-        List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("b.name", letter.toString(), MatchMode.ANYWHERE)));
+        List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("b.name", letter.toString(), MatchMode.START)));
         return books;
     }
 
