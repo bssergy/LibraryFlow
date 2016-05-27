@@ -13,7 +13,7 @@ public class SearchCriteria implements Serializable {
 
     private String text;
 
-    private SearchType searchType;
+    private SearchType searchType = SearchType.TITLE;
 
     private Character letter;
 
