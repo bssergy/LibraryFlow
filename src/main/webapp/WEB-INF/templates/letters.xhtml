@@ -19,7 +19,9 @@
                 <ul>
                     <ui:repeat value="${utils.letters}" var="letter">
                         <li>
-                            <p:commandLink value="#{letter}" action="searchByLetter" actionListener="#{searchCriteria.setLetter(letter)}" ajax="false"/>
+                            <h:commandButton value="#{letter}" action="searchByLetter" styleClass="noborder-button" actionListener="#{searchCriteria.setLetter(letter)}">
+                                <f:ajax execute="@form" render=":booksForm:booksList"/>
+                            </h:commandButton>
                         </li>
                     </ui:repeat>
 
