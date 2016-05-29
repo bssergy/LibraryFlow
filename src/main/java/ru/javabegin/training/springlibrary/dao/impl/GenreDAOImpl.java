@@ -1,4 +1,4 @@
-package ru.javabegin.training.springlibrary.dao.imlp;
+package ru.javabegin.training.springlibrary.dao.impl;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

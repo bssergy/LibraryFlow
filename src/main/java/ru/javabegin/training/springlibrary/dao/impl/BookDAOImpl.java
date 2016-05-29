@@ -1,4 +1,4 @@
-package ru.javabegin.training.springlibrary.dao.imlp;
+package ru.javabegin.training.springlibrary.dao.impl;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -76,6 +76,15 @@ public class BookDAOImpl implements BookDAO {
     public List<Book> getBooks(Character letter) {
         List<Book> books = createBookList(createBookCriteria().add(Restrictions.ilike("b.name", letter.toString(), MatchMode.START)));
         return books;
+    }
+
+    @Transactional
+    @Override
+    public Object getFieldValue(Long id, String fieldName) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Book.class);
+        criteria.setProjection(Property.forName(fieldName));
+        criteria.add(Restrictions.eq("id", id));
+        return criteria.uniqueResult();
     }
 
     private DetachedCriteria createBookCriteria() {
