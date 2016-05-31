@@ -27,6 +27,11 @@
     <http auto-config="true" use-expressions="true">
         
         <intercept-url pattern="/app/main" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/**" requires-channel="https"/>
+
+        <port-mappings>
+            <port-mapping http="8080" https="8181"/>
+        </port-mappings>
 
         <form-login
             login-page="/app/login"
