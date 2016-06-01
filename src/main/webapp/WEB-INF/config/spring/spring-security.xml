@@ -10,17 +10,18 @@
     </beans:bean>
 
     <beans:bean id="jdbcGroupsImpl" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
-        <beans:property name="enableGroups" value="true"/>
+        <beans:property name="enableGroups" value="false"/>
         <beans:property name="enableAuthorities" value="true"/>
         <beans:property name="dataSource" ref="dataSource"/>
     </beans:bean>
 
+    <beans:bean id="bcryptBean" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <beans:constructor-arg name="strength" value="12"/>
+    </beans:bean>
+
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="user" password="user" authorities="ROLE_USER"/>
-                <user name="admin" password="admin" authorities="ROLE_ADMIN, ROLE_USER"/>
-            </user-service>
+        <authentication-provider user-service-ref="jdbcGroupsImpl">
+            <password-encoder ref="bcryptBean"/>
         </authentication-provider>
     </authentication-manager>
 
